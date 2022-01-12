@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+<div class="topdiv">
+  <a href={% url 'main:index' %}>Назад</a>
+</div>
+    <div class="center-div">
+        <h3>{{ greetings}}</h3>
+
+    </div>
+
+{% endblock %}

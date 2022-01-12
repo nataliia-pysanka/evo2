@@ -1,0 +1,23 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+<div class="center-div">
+  <div class="form">
+    <form method="POST" action="{% url 'main:index' %}">
+      {% csrf_token %}
+      <h3>Як я можу до вас звертатись?</h3>
+      {% for field in form %}
+        <div class="fieldWrapper">
+          <div class="label">
+            {{ field.label_tag }}
+          </div>
+            {{ field }}
+        </div>
+      {% endfor %}
+      <input type="submit" value="Привітатись">
+      <a href={% url 'main:persons_list' %}>Вже привітались</a>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
