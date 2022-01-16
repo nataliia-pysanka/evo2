@@ -46,7 +46,8 @@ def index(request):
 
 
 def persons_list(request):
-    data = {'persons_list': Person.objects.all(), 'time': today}
+    data = {'persons_list': Person.objects.all(),
+            'time': today}
     return render(request, 'main/persons_list.html', data)
 
 

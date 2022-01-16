@@ -9,12 +9,17 @@
   <title>List</title>
 </head>
 <body>
-<div class="container">
+
+<div class="topdiv">
   <h5>{{ time }}</h5>
+
+  {% block header %}
+  {% endblock %}
+
 </div>
-<div class="container">
+
   {% block content %}
-</div>
-{% endblock %}
+  {% endblock %}
+
 </body>
 </html>
