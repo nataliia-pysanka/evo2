@@ -31,6 +31,7 @@ def index(request):
                 p.save()
                 data = {'greetings': f'Вітаю, {name}', 'time': today}
                 return render(request, 'main/greet.html', data)
+            p.login_date = timezone.now()
             delta = p.login_date + day
             if delta > timezone.now():
                 return render(request, 'main/greet.html', {'greetings': 'Вже бачились',
