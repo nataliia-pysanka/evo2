@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('persons_list', views.persons_list, name='persons_list'),
     # path('greet', views.greet, name='greet'),
-    path('config', views.config, name='config')
+    path('config', views.config, name='config'),
+    path('clear', views.config, name='clear'),
 ]
 
