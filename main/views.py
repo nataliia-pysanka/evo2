@@ -31,7 +31,8 @@ def index(request):
                 p.save()
                 data = {'greetings': f'Вітаю, {name}', 'time': today}
                 return render(request, 'main/greet.html', data)
-            p.login_date = timezone.now()
+            if p.login_date is None:
+                p.login_date = timezone.now()
             delta = p.login_date + day
             if delta > timezone.now():
                 return render(request, 'main/greet.html', {'greetings': 'Вже бачились',
@@ -48,8 +49,10 @@ def index(request):
 
 
 def persons_list(request):
-    data = {'persons_list': Person.objects.all(),
-            'time': today}
+    for person in Person.objects.all():
+        if (timezone.now() - person.login_date) > day:
+            person.delete()
+    data = {'persons_list': Person.objects.all(), 'time': today}
     return render(request, 'main/persons_list.html', data)
 
 
@@ -67,9 +70,7 @@ def read_file(file_name):
 
 
 def clear(request):
-    persons = Person.objects.all()
-    for p in persons:
-        p.delete()
+    Person.objects.all().delete()
     return HttpResponseRedirect(reverse('main:persons_list'))
 
 
